@@ -1,21 +1,16 @@
-const http = require('http')
+const express = require('express');
+const app = express();
 
-const server = http.createServer((req,res)=>{
-    if(req.url == "/about"){
-        res.end("The about page")
-    }
-
-    if(req.url == "/profile"){
-        res.end("The profile page")
-    }
-
-    if(req.url == "/"){
-        res.end("Home Page")
-    }
-
-    if(req.url == "/contact"){
-        res.end("The contact page")
-    }
+app.get('/', (req,res) => {
+    res.send('Hello World!');
 })
 
-server.listen(3000)
+app.get('/about', (req, res) =>{
+    res.send('This is the about page');
+})
+
+app.get('/profile', (req,res) => {
+    res.send('This is the profile page');
+})
+
+app.listen(3000);
