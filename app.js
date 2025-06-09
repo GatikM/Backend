@@ -10,6 +10,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 // this is a built-in middleware function in Express that parses incoming requests with urlencoded payloads
 
+app.use(express.static("public"));
+
 //Middleware to log requests
 app.use((req, res, next) => {
   //console.log("This is a middleware function");

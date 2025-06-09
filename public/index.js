@@ -1,3 +1,4 @@
+alert("Welcome to our website!")
 console.log("Hello, world!");
 
 const catMe = require('cat-me');
