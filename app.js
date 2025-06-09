@@ -6,6 +6,10 @@ const app = express();
 app.use(morgan("dev"));
 app.set("view engine", "ejs");
 
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+// this is a built-in middleware function in Express that parses incoming requests with urlencoded payloads
+
 //Middleware to log requests
 app.use((req, res, next) => {
   //console.log("This is a middleware function");
@@ -14,25 +18,24 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello this is our default route");
+  res.render('index');
 });
 
 app.get(
   "/about",
-  (req, res, next) => { // running a middleware for a specific route
-    const a = 10;
-    const b = 20;
-    console.log(a + b);
-
-    next();
-  },
   (req, res) => {
-    res.render("index");
+    res.send("This is the about page");
   }
 );
 
 app.get("/profile", (req, res) => {
   res.send("This is the profile page");
 });
+
+
+app.post("/get-form-data",(req,res) => {
+  console.log(req.body);
+  res.send("Form data received");
+})
 
 app.listen(3000);
